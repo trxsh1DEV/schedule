@@ -1,0 +1,1 @@
+O src é basicamente pra indicar módulos e pastas que ficam no back-end ou não fazem parte diretamente da interface do usuário

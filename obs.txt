@@ -1,0 +1,17 @@
+um exemplo de session é, qnd vc vai logar no face em um outro PC ou dispositivo, vc tem que inserir as informações acesso (login e senha) da sua conta e 
+após isso ele entra e pergunta se vc deseja salvar essa sessão ou usuário sla nesse dispositivo e assim qnd vc for logar novamente irá entrar automaticamente,
+isso pq vc literalmente salvou a sua sessão de usuário, mas sessões pode ser usados pra salvar diversas outras coisas e salvar configurações ou dados do client daquele navegador.
+Os dados da session qnd salvos em no armazenamento não volátil do servidor (HD,SSD) e é salvo em uma BD, a própria session cria uma tabela na BD cm o nome sessions;
+
+Flash msgs -> Mensagens que são salvas na sessão para serem exibidas ao usuário uma única vez (Ex: msg de senha inválida)
+normalmente elas são usadas cm auxilio de um framework que facilita o uso das mesmas, mas é possível fazer cm Express na raça
+
+Includes Views -> É basicamente você quebrar o seu HTMl em pedaços e ir usando de acordo com as informações que você quer exibir em determinada rota e ir importando oq precisa de uma rota pra outra.
+
+Helmet -> O Helmet é na realidade apenas uma coleção de nove funções de middlewares menores que configuram cabeçalhos HTTP relacionados à segurança e protegem nosso aplicativo contra vulnerabilidades conhecidas na web
+CSRF (Cross Site Request Forgery) -> Impede que algum link ou qlqr tipo de agente malicioso ou outro site insira cabeçalhos na nossa página
+Na prática ele basicamente cria um token (csrf) e verifica quem está enviando aquele cabeçalho (post), caso o csrf token não bata, quer dizer que n é um usuário interno da nossa aplicação
+
+O mongoose em resumo serve para modelarmos (criarmos schemas) dos dados em uma tabela (collection), por exemplo, em um site de lista de contatos cada contato vai ter um id, numero, nome e e-mail obrigatórios e vão ter determinado tipo, como String, Number e etc. Isso é um esquema.
+
+req.body -> sempre é preenchido cm os dados de post, como os dados de um formulário;

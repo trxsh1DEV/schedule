@@ -1,0 +1,56 @@
+<%- include('includes/head') %> 
+<%- include('includes/nav') %> 
+<style>
+  table a {
+    text-decoration: none;
+  }
+  thead {
+    text-transform: uppercase;
+  }
+</style>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-2"></div>
+
+            <div class="col-lg-8 my-4">
+              <h1 class="text-center">Schedule</h1>
+              <p class="text-center lead">Your contacts are down</p>
+
+              <%- include('includes/messages') %> 
+
+              <% if (contacts.length > 0) { %>
+                <div class="responsive-table">
+                  <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Surname</th>
+                        <th scope="col">Telephone</th>
+                        <th scope="col">E-mail</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <!-- Esse contacts é por conta que no home controller onde estou pegando os contatos na BD, estou renderizando o obj {contacts} -->
+                      <% contacts.forEach(contact => { %>
+                          <tr>
+                            <td><%= contact.name %></td>
+                            <td><%= contact.surname %></td>
+                            <td><%= contact.telephone %></td>
+                            <td><%= contact.email %></td>
+                            <td><a href="/contact/index/<%= contact._id %>">Edited</a></td>
+                            <td><a class="text-danger" href="/contact/delete/<%= contact._id %>">Delete</a></td>
+                          </tr>
+                      <% }); %>
+                    </tbody>
+                  </table>
+                </div>
+                <% } else {%>
+                  <div class="alert alert-primary">
+                  <p class="text-center lead"><strong>Not exists contacts in your schedule</strong></p>
+                  </div>
+                <% } %> 
+              </div>
+            <div class="col-lg-2"></div>
+        </div>
+    </div>
+<%- include('includes/footer') %> 
