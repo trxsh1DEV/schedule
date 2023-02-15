@@ -1,0 +1,33 @@
+<% Controle de fluxo (if, for...) %>
+<%= Imprime escapando caracteres %>
+<%- Imprime sem escapando caracteres %>
+<%# comentário %>
+<%- include('path/file')%>
+
+A extensão "ejs support" auto completa as tags pra gente e mostra todas as opções do EJS (tbm tem a documentação deles no site oficial)
+
+Usando EJS
+<% if(typeof title !== 'undefined'){ %>
+    <%- title %> 
+<% } else {%> 
+    Title not sending
+<% } %> 
+
+Mandando conteúdos para o fron-end / interface do usuário cm EJS através de Controllers, Ex:
+
+exports.pageInitial = (req,res) => {
+    res.render('index', {
+        // Injetando dados opcionais
+        title: 'This is <span style="color: red;">title</span> of page',
+        numbers: [0,1,2,3,4,5,6,7,8,9]
+    });
+    return;
+};
+
+OUUUUUUUU tbm é possível via middlewares (que é mais comum)
+
+exports.myMiddleware = (req,res,next) => {
+    res.locals.variableLocal = 'This is value in the variable local.';
+    next();
+}
+
