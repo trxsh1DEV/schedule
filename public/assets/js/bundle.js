@@ -1,6 +1,100 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./frontend/modules/Contact.js":
+/*!*************************************!*\
+  !*** ./frontend/modules/Contact.js ***!
+  \*************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ Contact)
+/* harmony export */ });
+/* harmony import */ var validator_lib_isEmail__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! validator/lib/isEmail */ "./node_modules/validator/lib/isEmail.js");
+/* harmony import */ var validator_lib_isEmail__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(validator_lib_isEmail__WEBPACK_IMPORTED_MODULE_0__);
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor); } }
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
+
+var Contact = /*#__PURE__*/function () {
+  function Contact(formClass) {
+    _classCallCheck(this, Contact);
+    this.form = document.querySelector(formClass);
+  }
+  _createClass(Contact, [{
+    key: "init",
+    value: function init() {
+      this.events();
+    }
+  }, {
+    key: "events",
+    value: function events() {
+      var _this = this;
+      if (!this.form) return;
+      this.form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        _this.validate(e);
+      });
+    }
+  }, {
+    key: "validate",
+    value: function validate(e) {
+      var el = e.target;
+      var nameInput = el.querySelector('input[name="name"]');
+      // const surnameInput = el.querySelector('input[name="surname"]');
+      var telephoneInput = el.querySelector('input[name="telephone"]');
+      var emailInput = el.querySelector('input[name="email"]');
+      var err = false;
+      var _iterator = _createForOfIteratorHelper(this.form.querySelectorAll('.error-text')),
+        _step;
+      try {
+        for (_iterator.s(); !(_step = _iterator.n()).done;) {
+          var errorTxt = _step.value;
+          errorTxt.remove();
+        }
+      } catch (err) {
+        _iterator.e(err);
+      } finally {
+        _iterator.f();
+      }
+      if (!nameInput) return err = true;
+      // nameInput.value = nameInput.value.replace(/\d+/gi,'');
+      if (!validator_lib_isEmail__WEBPACK_IMPORTED_MODULE_0___default()(emailInput.value)) {
+        this.createMsgError(emailInput, 'E-mail inválido');
+        err = true;
+      }
+      var validTelephone = /^(\(?\d{2}\)?\s*)?(9\s*)?(\d{4})-?(\d{4})$/g;
+      if (!telephoneInput.value.match(validTelephone)) {
+        this.createMsgError(telephoneInput, 'Telefone inválido');
+        err = true;
+      }
+
+      // Enviando formulário caso não haja erros
+      if (!err) el.submit();
+    }
+  }, {
+    key: "createMsgError",
+    value: function createMsgError(field, msg) {
+      var div = document.createElement('div');
+      div.innerHTML = msg;
+      div.classList.add('error-text');
+      field.insertAdjacentElement('afterend', div);
+    }
+  }]);
+  return Contact;
+}();
+
+
+/***/ }),
+
 /***/ "./frontend/modules/Login.js":
 /*!***********************************!*\
   !*** ./frontend/modules/Login.js ***!
@@ -19547,7 +19641,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "", "",{"version":3,"sources":[],"names":[],"mappings":"","sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, ".error-text {\r\n    font-size: 14px;\r\n    color: red;\r\n}\r\n\r\n.navbar-nav .nav-link.active:hover, .navbar-nav .show>.nav-link {\r\n    opacity: .6;\r\n    transition: opacity 400ms ease-in-out;\r\n}\r\n\r\n.container .icons {\r\n    font-size: 20px;\r\n}", "",{"version":3,"sources":["webpack://./frontend/assets/css/style.css"],"names":[],"mappings":"AAAA;IACI,eAAe;IACf,UAAU;AACd;;AAEA;IACI,WAAW;IACX,qCAAqC;AACzC;;AAEA;IACI,eAAe;AACnB","sourcesContent":[".error-text {\r\n    font-size: 14px;\r\n    color: red;\r\n}\r\n\r\n.navbar-nav .nav-link.active:hover, .navbar-nav .show>.nav-link {\r\n    opacity: .6;\r\n    transition: opacity 400ms ease-in-out;\r\n}\r\n\r\n.container .icons {\r\n    font-size: 20px;\r\n}"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -28495,8 +28589,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var regenerator_runtime_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! regenerator-runtime/runtime */ "./node_modules/regenerator-runtime/runtime.js");
 /* harmony import */ var regenerator_runtime_runtime__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(regenerator_runtime_runtime__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _modules_Login__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/Login */ "./frontend/modules/Login.js");
-/* harmony import */ var _assets_css_style_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./assets/css/style.css */ "./frontend/assets/css/style.css");
+/* harmony import */ var _modules_Contact__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/Contact */ "./frontend/modules/Contact.js");
+/* harmony import */ var _assets_css_style_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./assets/css/style.css */ "./frontend/assets/css/style.css");
 // Recursos para suportar async, await / Promise
+
 
 
 
@@ -28504,8 +28600,10 @@ __webpack_require__.r(__webpack_exports__);
 
 var login = new _modules_Login__WEBPACK_IMPORTED_MODULE_2__["default"]('.form-login');
 var register = new _modules_Login__WEBPACK_IMPORTED_MODULE_2__["default"]('.form-register');
+var contact = new _modules_Contact__WEBPACK_IMPORTED_MODULE_3__["default"]('.form-contact');
 login.init();
 register.init();
+contact.init();
 
 // n estamos usando esse css
 

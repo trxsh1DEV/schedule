@@ -37,8 +37,9 @@
                             <td><%= contact.surname %></td>
                             <td><%= contact.telephone %></td>
                             <td><%= contact.email %></td>
-                            <td><a href="/contact/index/<%= contact._id %>">Edited</a></td>
-                            <td><a class="text-danger" href="/contact/delete/<%= contact._id %>">Delete</a></td>
+                            <!-- <td><a href="/contact/index/<%= contact._id %>">Edited</a></td> -->
+                            <td><a title="Edit" href="/contact/index/<%= contact._id %>"><ion-icon class="icons" name="create-sharp"></ion-icon></a></td>
+                            <td ><a title="Delete" class="text-danger" href="/contact/delete/<%= contact._id %>"><ion-icon class="icons" name="trash-sharp"></ion-icon></a></td>
                           </tr>
                       <% }); %>
                     </tbody>

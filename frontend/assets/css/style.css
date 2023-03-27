@@ -1,0 +1,13 @@
+.error-text {
+    font-size: 14px;
+    color: red;
+}
+
+.navbar-nav .nav-link.active:hover, .navbar-nav .show>.nav-link {
+    opacity: .6;
+    transition: opacity 400ms ease-in-out;
+}
+
+.container .icons {
+    font-size: 20px;
+}
